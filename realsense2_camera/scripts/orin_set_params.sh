@@ -1,0 +1,1 @@
+rosrun dynamic_reconfigure dynparam set /camera1/stereo_module '{'emitter_enabled': False}'

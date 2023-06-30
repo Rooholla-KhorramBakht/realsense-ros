@@ -1,4 +1,4 @@
-// License: Apache 2.0. See LICENSE file in root directory.
+//License: Apache 2.0. See LICENSE file in root directory.
 // Copyright(c) 2017 Intel Corporation. All Rights Reserved
 
 #include "realsense2_camera/realsense_node_factory.h"
@@ -209,6 +209,10 @@ void RealSenseNodeFactory::getDevice(rs2::device_list list)
 			ROS_INFO("Resetting device...");
 			_device.hardware_reset();
 			_device = rs2::device();
+			//rs2::device dev;
+			//std::string pn = dev.get_info(RS2_CAMERA_INFO_PHYSICAL_PORT);
+			//std::cout << "My USB ID: " << pn << std::endl;
+
 		}
 		catch(const std::exception& ex)
 		{
@@ -375,6 +379,7 @@ void RealSenseNodeFactory::StartDevice()
 		case RS_USB2_PID:
 		case RS_L515_PID_PRE_PRQ:
 		case RS_L515_PID:
+	    case 0x0B4B: // Camera installed on B1
 		case RS_L535_PID:
 			_realSenseNode = std::shared_ptr<BaseRealSenseNode>(new BaseRealSenseNode(nh, privateNh, _device, _serial_no));
 			break;
